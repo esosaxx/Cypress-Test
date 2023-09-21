@@ -1,40 +1,38 @@
 /// <reference types="cypress" />
 
-import { invalidUser, validUser } from "../../fixtures/loginUsers";
-
+import { invalidUser, validUser } from '../../fixtures/loginUsers';
 
 describe('login collection', () => {
-    it('valid login', () => {
-        // visit page url
-        cy.login();
-        
-        //Assertion
-        cy.url().should('include', 'route=account/account');
-        cy.contains('My account');
+	it('valid login', () => {
+		// visit page url
+		cy.login();
 
-        //subscribe to newsletters
-        cy.contains('newsletter').click()
-        cy.get('.float-right > .btn').click();
+		//Assertion
+		cy.url().should('include', 'route=account/account');
+		cy.contains('My account');
 
-        //Assertion
-        cy.get('.alert').should(
-           'contain',
-            'Success: Your newsletter subscription has been successfully updated!'
-        );
-    });
+		//subscribe to newsletters
+		cy.contains('newsletter').click();
+		cy.get('.float-right > .btn').click();
 
-    it('Invalid login email', () => {
-        //visit page (url)
+		//Assertion
+		cy.get('.alert').should(
+			'contain',
+			'Success: Your newsletter subscription has been successfully updated!'
+		);
+	});
 
-        cy.login(invalidUser.email, invalidUser.password);
+	it('Invalid login email', () => {
+		//visit page (url)
 
-        //Assertion
-        cy.url().should('include', 'route=account/login');
-        //cy.url().should('contain', 'route=account/account');
-        cy.get('#account-login > .alert').should(
-            'contain',
-            'Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.'
-        );
-    });
-    
+		cy.login(invalidUser.email, invalidUser.password);
+
+		//Assertion
+		cy.url().should('include', 'route=account/login');
+		//cy.url().should('contain', 'route=account/account');
+		cy.get('#account-login > .alert').should(
+			'contain',
+			'Warning: No match for E-Mail Address and/or Password.'
+		);
+	});
 });
