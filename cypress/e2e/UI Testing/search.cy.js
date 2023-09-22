@@ -1,13 +1,13 @@
 /// <reference types="cypress" />
-import {invalidSearch} from '../../fixtures/searchExamples'
+import { invalidSearch } from '../../fixtures/searchExamples';
 
 describe('Search collection', () => {
     it('Valid Search', () => {
-        cy.search;
+        cy.search();
 
         cy.url().should('include', 'search=Apple');
         cy.contains('Search - Apple').should('be.visible');
-        cy.get('.product-layout').should('have.length.gt', 0)
+        cy.get('.product-layout').should('have.length.gt', 0);
     });
 
     it('Invalid Search Example 1', () => {
@@ -21,4 +21,4 @@ describe('Search collection', () => {
 
         cy.contains('There is no product that matches the search criteria.').should('be.visible');
     });
-})
+});

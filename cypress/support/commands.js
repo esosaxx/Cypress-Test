@@ -8,8 +8,8 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
-import { uiPassword } from "./UI/helper";
-import loginPage from '../fixtures/Selectors/loginPage.json'
+import { uiPassword } from './UI/helper';
+import loginPage from '../fixtures/Selectors/loginPage.json';
 import homePage from '../../fixtures/Selectors/homePage.json';
 
 // -- This is a parent command --
@@ -18,7 +18,7 @@ Cypress.Commands.add('login', (email = 'lambdatestnew@yopmail.com', password = u
 
     cy.get(loginPage.loginButton).click();
     cy.get(loginPage.emailField).type(email);
-    cy.get(loginPage.passwordField).type(password, {force: true});
+    cy.get(loginPage.passwordField).type(password, { force: true });
 
     cy.get(loginPage.loginButton).click();
 });
@@ -26,8 +26,8 @@ Cypress.Commands.add('login', (email = 'lambdatestnew@yopmail.com', password = u
 Cypress.Commands.add('search', (input = 'Apple') => {
     cy.visit(Cypress.env('url'));
 
-    cy.login;
-    cy.get(homePage.searchField).type(input);
+    cy.login();
+    cy.get(homePage.searchField).eq(0).type(input);
     cy.get(homePage.searchButton).click();
 });
 
