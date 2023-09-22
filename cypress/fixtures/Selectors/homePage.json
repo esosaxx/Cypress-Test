@@ -1,6 +1,8 @@
 {
+
 	"clickNewsletterButton": "cy.contains('newsletter')",
 	"newsletterSubscription": ".float-right > .btn",
 	"searchField": "[name='search']",
 	"searchButton": ".type-text"
 }
+
